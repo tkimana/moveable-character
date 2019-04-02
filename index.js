@@ -1,42 +1,60 @@
 // Define a variable to use when we need to set the characters image src
-const ASSET_ROOT = './assets/green-character'
+const ASSET_ROOT = './assets/green-character';
 
 // Create an img element to represent the character
-const character = document.createElement('img')
+const character = document.createElement('img');
 
 // Make the character a little bigger
-character.style.width = '75px'
+character.style.width = '75px';
 
 // Position the character absolutely in the lower left corner of the screen
-character.style.position = 'absolute'
-character.style.left = '0px'
-character.style.bottom = '0px'
+character.style.position = 'absolute';
+character.style.left= '0px';
+character.style.bottom = '0px';
+
+//character.style.right = '0px'
+//character.style.up = '0px'
 
 // Set the src of the img so the browser knows what to show
-character.src = `${ASSET_ROOT}/static.gif`
+character.src = `${ASSET_ROOT}/static.gif`;
 
 // Add the character image to the page
-document.body.append(character)
+document.body.append(character);
 
 // Define a variable to represent the direction our character is moving
-let direction = null
+let direction = null;
 
 // Define a variable to reperesent the speed of our character
-let speed = 5
+let speed = 5;
 
 // Have someone at your table do some research on  setInterval- what is it doing?
 setInterval(function(){
 
     // character.style.left / bottom are both strings: "0px"
     // If we want to do some arithmatic, we'll need to parse them into integers:
-    const left = parseInt(character.style.left)
-    const bottom = parseInt(character.style.bottom)
+    const left = parseInt(character.style.left);
+    const bottom = parseInt(character.style.bottom);
 
+    
+    //const up = parseInt(character.style.up);
+    //const right = parseInt(character.style.right)
+    
     // If the character is moving right, the distance between him and the left side of the screen should increase
     // What is speed?
     if(direction == 'right'){
-        character.style.left = `${left+speed}px`
+        character.style.left = `${left+speed}px`;
     }
+    else if (direction == 'left') {
+        character.style.left = `${left-speed}px`;
+    }
+    else if (direction == 'up') {
+        character.style.bottom = `${bottom+speed}px`;
+    }
+    else if (direction == 'down') {
+        character.style.bottom = `${bottom-speed}px`;
+    }
+    
+
 
     // Account for other directions here:
 
@@ -54,15 +72,19 @@ function walkRight(){
 // Finish the functions below:
 
 function walkLeft(){
+    character.src = `${ASSET_ROOT}/walkleft.gif`
+    direction = 'left'
 
 }
 
 function walkUp(){
-
+    character.src = `${ASSET_ROOT}/walkup.gif`
+    direction = 'up'
 }
 
 function walkDown(){
-
+    character.src = `${ASSET_ROOT}/walkdown.gif`
+    direction = 'down'
 }
 
 function stop(){
